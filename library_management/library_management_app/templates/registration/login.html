@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;">
+    <li>
+        <h4><span style="color: #489a9b ;"> Login </span><span style='color: rgba(232, 204, 27, 0.818);'> For Admin/
+                User </span></h4>
+    </li>
+    <hr>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

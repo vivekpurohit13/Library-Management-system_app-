@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="text-align: center;">
+    <li>
+        <h4><span style="color: #489a9b ;"> Register </span><span style='color: rgba(16, 230, 169, 0.681);'> Your Self
+            </span></h4>
+    </li>
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" onMouseOver="this.style.color='blue'" onMouseOut="this.style.color='#00F'" aria-current="page">
+    </form>
+</div>
+{% endblock %}

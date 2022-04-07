@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Library Management System (LMS)</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#!"><span style="color: #5e9693;">L</span><span
+                    style="color: blue;">M</span><span style="color: #5e9693;">S</span><span
+                    style="color: cornflowerblue; font-size: 1ch;"> Library Management System </span></a>
+            <!-- <a class="navbar-brand" href="#!"><span style="color: whitesmoke;">WELCOME</span><span style="font-size: 0.40ch; text-emphasis-color: blue;">@vivekp_urohit</span></a> -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="position: absolute; right:0px;">
+
+                <ul class="nav navbar-nav navbar-center" style="color: azure; text-align: center;">
+                    {% if user.is_superuser %}
+                    <li>
+                        <h4><span style="color: #67fa05;"> Welcome </span><span style='padding-right: 16ch' ;> Admin
+                                User </span></h4>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_authenticated and not user.is_superuser %}
+                    <li>
+                        <h4><span style="color: #67fa05;"> Welcome </span><span style='padding-right: 16ch' ;> Student
+                                :) </span></h4>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item">
+                        <a class="nav-link " onMouseOver="this.style.color='whitesmoke'"
+                            onMouseOut="this.style.color='#00F'" aria-current="page" href="/">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link " onMouseOver="this.style.color='white'" onMouseOut="this.style.color='#00F'"
+                            aria-current="page" href="/accounts/profile/">Show Book List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary" onMouseOver="this.style.color='white'"
+                            onMouseOut="this.style.color='#00F'" aria-current="page" href="/account/logout/">Logout
+                            Bye!</a>
+                    </li>
+                    {% else %}
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link " onMouseOver="this.style.color='white'" onMouseOut="this.style.color='#00F'"
+                            aria-current="page" href="/accounts/login/">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn" onMouseOver="this.style.color='white'"
+                            onMouseOut="this.style.color='#00F'" aria-current="page"
+                            href="/account/register/">Register</a>
+                    </li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h4 style="text-align: center; color: blueviolet;">Book List</h4>
+    {% if user.is_superuser %}
+    <div style="text-align: right;">
+        <a type="button" class="btn btn-success" href="/add/">Create</a>
+    </div>
+    {% endif %}
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Describe</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in book_list %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.describe }}</td>
+                <td>{{ book.book_name }}</td>
+                {% if user.is_superuser %}
+                <td><a type="button" class="btn btn-warning" href="/update/{{ book.id }}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/delete/{{ book.id }}">Delete</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
